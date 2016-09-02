@@ -69,4 +69,5 @@ theme: phase
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/mirro-co/mirro-co.github.io.git
+  repo: 
+    github: git@github.com:mirro-co/mirro-co.github.io.git,master

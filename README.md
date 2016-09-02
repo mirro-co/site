@@ -6,21 +6,25 @@ The website for mirro.co
 
 1. Install [git](https://git-scm.com/downloads) & [node.js](https://nodejs.org/en/download/) on your local computer
 
-2. Create a repository on github.com
+2. Create two repositories on github.com
  
 	```
 	repo name: mirro-co.github.io
-	purpose: for deployed hexo site pages
+	purpose: store generated & deployed hexo site pages (hexo public directory)
 
 	repo name: site
-	purpose: for the hexo site source
+	purpose: store the hexo source for the site
 	```
 
 3. Setup ssh key so that no password required for every login, check [this](https://help.github.com/categories/ssh/) 
-
+	```
+	NOTE: if you installed TortoiseSVN, GIT_SSH will be set to TortoisePlink.exe, it's better to unset it to use ssh from git bash
+	```
+	
 4. Install Hexo
 	```bash
 	$ npm install hexo-cli -g
+	$ npm install hexo-deployer-git -g
 	```
 	
 5. Initiate blog under directory 'site'
@@ -34,28 +38,32 @@ The website for mirro.co
 	```bash
 	$ cd site 
 	$ npm install
+	$ npm install hexo-deployer-git --save
 	```
 	
-	change the themes
+	Add addtional themes
 	```bash
 	$ git clone git://github.com/tommy351/hexo-theme-phase.git themes/phase
 	```
 	
-	change themes to phase in _config.yml
+	Change themes to phase in _config.yml
+	```yaml
+	theme: phase
+	```
 	
-	generate static pages and review
+	Generate static pages, static pages will be generated under 'public' directory,
 	```bash
 	$ hexo generate
 	```
-	static pages will be generated under 'public' directory, start hexo server
+	Start hexo server to view the blog locally
 	```bash
 	$ hexo server
 	```
-	
+
 	view the blog on http://localhost:4000
 	
 
-6. Deploy to github repository 'site'
+6. Push the hexo site to github repository 'site'
 	```bash
 	$ cd site
 	$ git init
@@ -64,22 +72,21 @@ The website for mirro.co
 	$ git remote add origin https://github.com/mirro-co/site.git
 	$ git push -u origin master
 	```
-	
+
 7. Create a new post and start hexo server to view your blog locally	[http://localhost:4000]
 	```bash
-	$ cd blog
+	$ cd site
 	$ hexo new "your post name"
 	```
 	
-	a markdown file will be generated in source/_posts/your post name.md, edit this file using a text editor 
-	which supports markdown (sublime text)
+	a markdown file will be generated in source/_posts/your post name.md, edit this file with a markdown supported text editor 
 	
 	view the blog on http://localhost:4000
-	
 
-8. Deploy the blog to github pages
-
-
+8. Deploy the generated static blog site to github pages
+	```bash
+	$ hexo deploy
+	```
 
 ## Getting started to create & post a blog
 
